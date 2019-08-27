@@ -10,5 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Api(tags = "AdminController",description = "后台用户管理")
 @RequestMapping("/admin")
 public class AdminController {
-
+    @RequestMapping("index")
+    public String index(){
+        return "index";
+    }
 }
