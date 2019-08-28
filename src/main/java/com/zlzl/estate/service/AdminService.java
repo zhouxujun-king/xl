@@ -12,8 +12,10 @@ public interface AdminService {
 
     /**
      * 登录功能
+     * @param username 登录名
+     * @param password 密码
+     * @@return  用于生成jwt的token
      */
     String login(String username,String password);
-
 
 }

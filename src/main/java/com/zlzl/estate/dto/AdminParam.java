@@ -21,11 +21,4 @@ public class AdminParam {
     @NotEmpty(message = "密码不允许为空")
     private String password;
 
-    @ApiModelProperty(value = "邮箱")
-    @Email(message = "邮箱格式不正确")
-    private String email;
-
-    @ApiModelProperty(value = "手机号")
-    private String phone;
-
 }
