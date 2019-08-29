@@ -13,11 +13,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@Controller
+@RestController
 @Api(tags = "AdminController",description = "后台用户管理")
 @RequestMapping("/admin")
 public class AdminController {

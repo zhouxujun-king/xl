@@ -10,5 +10,8 @@
         <result column="login_time" jdbcType="TIMESTAMP" property="loginTime" />
         <result column="phone" jdbcType="VARCHAR" property="phone" />
     </resultMap>
+    <select id="SelectByUsername" parameterType="String" resultMap="BaseResultMap">
+        SELECT * FROM estate where username=#{username}
+    </select>
 
 </mapper>
