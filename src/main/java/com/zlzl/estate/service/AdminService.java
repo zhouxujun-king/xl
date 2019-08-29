@@ -1,21 +1,31 @@
 package com.zlzl.estate.service;
 
-import com.zlzl.estate.dto.AdminParam;
+import com.zlzl.estate.mapper.AdminMapper;
 import com.zlzl.estate.model.Admin;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-public interface AdminService {
+/**
+ * Created by sang on 2017/12/28.
+ */
+@Service
+@Transactional
+public class AdminService implements UserDetailsService {
 
-    /**
-     * 注册
-     */
-    Admin register(AdminParam adminParam);
+    @Autowired
+    AdminMapper adminMapper;
 
-    /**
-     * 登录功能
-     * @param username 登录名
-     * @param password 密码
-     * @@return  用于生成jwt的token
-     */
-    String login(String username,String password);
+    @Override
+    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+        Admin admin = adminMapper.loadUserByUsername(s);
+        if (admin == null) {
+            throw new UsernameNotFoundException("用户名不对");
+        }
+        return admin;
+    }
 
 }
