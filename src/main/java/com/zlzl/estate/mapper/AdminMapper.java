@@ -12,5 +12,8 @@ public interface AdminMapper {
      * @param username
      * @return
      */
-    List<Admin> SelectByUsername(String username);
+   Admin SelectByUsername(String username);
+
+    int updatePassword(Admin admin);
+
 }

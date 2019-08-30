@@ -1,6 +1,7 @@
 package com.zlzl.estate.service.impl;
 
 import com.zlzl.estate.dto.AdminParam;
+import com.zlzl.estate.mapper.AdminMapper;
 import com.zlzl.estate.model.Admin;
 import com.zlzl.estate.service.AdminService;
 import com.zlzl.estate.util.JwtTokenUtil;
@@ -25,6 +26,8 @@ public class AdminServiceImpl  implements AdminService {
     private PasswordEncoder passwordEncoder;
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
+    @Autowired
+    private AdminMapper adminMapper;
 
     @Override
     public Admin register(AdminParam adminParam) {
@@ -45,6 +48,16 @@ public class AdminServiceImpl  implements AdminService {
             LOGGER.warn("登录异常:{}",e.getMessage());
         }
         return token;
+    }
+
+    @Override
+    public int updatePassword(Admin admin) {
+        return adminMapper.updatePassword(admin);
+    }
+
+    @Override
+    public Admin SelectByUsername(String username) {
+        return adminMapper.SelectByUsername(username);
     }
 
     /**

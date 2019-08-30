@@ -79,9 +79,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
                 Admin admin = new Admin();
                 admin.setUsername(username);
-                List<Admin> userAdmin = adminMapper.SelectByUsername(username);
-                if(userAdmin!=null && userAdmin.size()>0){
-                    return new AdminUserDetails(userAdmin.get(0));
+                Admin userAdmin = adminMapper.SelectByUsername(username);
+                if(userAdmin!=null ){
+                    return new AdminUserDetails(userAdmin);
                 }
                 throw new UsernameNotFoundException("用户名或密码错误");
             }

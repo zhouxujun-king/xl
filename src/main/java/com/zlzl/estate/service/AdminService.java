@@ -18,4 +18,15 @@ public interface AdminService {
      */
     String login(String username,String password);
 
+
+    /**
+     * 修改个人密码
+     */
+    int updatePassword(Admin admin);
+
+    /**
+     * 根据用户名获取用户信息
+     */
+    Admin SelectByUsername(String username);
+
 }
