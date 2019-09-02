@@ -12,7 +12,7 @@ public interface AdminMapper {
      * @param username
      * @return
      */
-   Admin SelectByUsername(String username);
+    Admin SelectByUsername(String username);
 
     int updatePassword(Admin admin);
 

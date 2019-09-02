@@ -6,6 +6,8 @@ import com.zlzl.estate.component.RestAuthenticationEntryPoint;
 import com.zlzl.estate.component.RestfulAccessDeniedHandler;
 import com.zlzl.estate.mapper.AdminMapper;
 import com.zlzl.estate.model.Admin;
+import com.zlzl.estate.model.AdminPermission;
+import com.zlzl.estate.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,6 +24,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -33,7 +36,7 @@ import java.util.List;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private AdminMapper adminMapper;
+    private AdminService adminService;
     @Autowired
     private RestfulAccessDeniedHandler restfulAccessDeniedHandler;
     @Autowired
@@ -80,19 +83,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new JwtAuthenticationTokenFilter();
     }
 
+
     @Bean
-    public UserDetailsService userDetailsService(){
-        return new UserDetailsService(){
-            @Override
-            public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-                Admin admin = new Admin();
-                admin.setUsername(username);
-                Admin userAdmin = adminMapper.SelectByUsername(username);
-                if(userAdmin!=null ){
-                    return new AdminUserDetails(userAdmin);
-                }
-                throw new UsernameNotFoundException("用户名或密码错误");
+    public UserDetailsService userDetailsService() {
+        //获取登录用户信息
+        return username -> {
+            Admin admin = adminService.SelectByUsername(username);
+            if (admin != null) {
+//                List<UmsPermission> permissionList = adminService.getPermissionList(admin.getId());
+                List<AdminPermission> permissionList = new ArrayList<>();
+                return new AdminUserDetails(admin,permissionList);
             }
+            throw new UsernameNotFoundException("用户名或密码错误");
         };
     }
 
