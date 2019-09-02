@@ -6,11 +6,11 @@
         <result column="username" jdbcType="VARCHAR" property="username" />
         <result column="password" jdbcType="VARCHAR" property="password" />
         <result column="email" jdbcType="VARCHAR" property="email" />
-        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-        <result column="login_time" jdbcType="TIMESTAMP" property="loginTime" />
+        <result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="loginTime" jdbcType="TIMESTAMP" property="loginTime" />
         <result column="phone" jdbcType="VARCHAR" property="phone" />
     </resultMap>
-    <select id="SelectByUsername"  resultMap="BaseResultMap">
+    <select id="SelectByUsername"  resultMap="BaseResultMap" >
         SELECT * FROM estate where username=#{username}
     </select>
 
@@ -22,7 +22,6 @@
             </if>
             <if test="password != null ">
                 password=#{password,jdbcType=VARCHAR}
-
             </if>
         </set>
     </update>

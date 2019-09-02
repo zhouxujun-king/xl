@@ -11,9 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,15 +27,15 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
-    @RequestMapping("index")
+    @RequestMapping(value = "index",method = RequestMethod.GET)
     public String index(){
         return "index";
     }
 
     @ApiOperation("登录入口")
-    @RequestMapping("/login")
+    @RequestMapping(value = "/login",method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult login(AdminParam adminParam){
+    public CommonResult login(@RequestBody AdminParam adminParam,BindingResult result){
         String token=adminService.login(adminParam.getUsername(),adminParam.getPassword());
         if(token==null){
             return CommonResult.validateFailed("用户名或密码错误");

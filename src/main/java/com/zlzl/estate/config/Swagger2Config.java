@@ -29,7 +29,7 @@ public class Swagger2Config {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.macro.mall.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.zlzl.estate.controller"))
                 .paths(PathSelectors.any())
                 .build()
                 .securitySchemes(securitySchemes())
@@ -38,9 +38,9 @@ public class Swagger2Config {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("mall后台系统")
-                .description("mall后台模块")
-                .contact("macro")
+                .title("房地产后台系统")
+                .description("房地产后台模块")
+                .contact("estate")
                 .version("1.0")
                 .build();
     }

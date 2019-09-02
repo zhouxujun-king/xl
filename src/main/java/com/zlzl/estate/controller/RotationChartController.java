@@ -23,7 +23,7 @@ public class RotationChartController {
     private RotationChartService rotationChartService;
 
     @ApiOperation("轮播图列表展示")
-    @RequestMapping("/list")
+    @RequestMapping(value = "/list",method = RequestMethod.GET)
     @ResponseBody
     public CommonResult<List<RotationChart>> list(){
         List<RotationChart> chartlist = rotationChartService.list();
@@ -31,7 +31,7 @@ public class RotationChartController {
     }
 
     @ApiOperation("添加图片")
-    @RequestMapping("/add")
+    @RequestMapping(value = "/add",method = RequestMethod.GET)
     @ResponseBody
     public CommonResult addPic(@RequestBody RotationChart rotationChart){
         int count = rotationChartService.add(rotationChart);
@@ -42,7 +42,7 @@ public class RotationChartController {
     }
 
     @ApiOperation("删除图片")
-    @RequestMapping("/delete")
+    @RequestMapping(value = "/delete",method = RequestMethod.GET)
     @ResponseBody
     public CommonResult deletePic(@PathVariable Integer id){
         int count = rotationChartService.delete(id);
@@ -54,7 +54,7 @@ public class RotationChartController {
 
 
     @ApiOperation("编辑图片")
-    @RequestMapping("/edit")
+    @RequestMapping(value = "/edit",method = RequestMethod.GET)
     @ResponseBody
     public CommonResult editPic(@PathVariable Integer id){
         int count = rotationChartService.update(id);

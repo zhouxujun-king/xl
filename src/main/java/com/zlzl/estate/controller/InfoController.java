@@ -22,7 +22,7 @@ public class InfoController {
     private AdminService adminService;
 
     @ApiOperation("密码修改")
-    @RequestMapping("/updatePassword")
+    @RequestMapping(value = "/updatePassword",method = RequestMethod.GET)
     @ResponseBody
     public CommonResult updatePassword(@RequestBody  String oldPassword,String newPassword){
         Admin admin = new Admin();
