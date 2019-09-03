@@ -3,6 +3,7 @@ package com.zlzl.estate.controller;
 
 import com.zlzl.estate.common.CommonResult;
 import com.zlzl.estate.dto.AdminParam;
+import com.zlzl.estate.model.Admin;
 import com.zlzl.estate.service.AdminService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,8 +44,23 @@ public class AdminController {
         }
         Map<String, String> tokenMap = new HashMap<>();
         tokenMap.put("token",token);
-        tokenMap.put("tokenHeader",tokenHead);
+        tokenMap.put("tokenHead",tokenHead);
         return CommonResult.success(tokenMap);
     }
+
+
+
+    @ApiOperation("获取登录用户信息")
+    @RequestMapping("/info")
+    @ResponseBody
+    public CommonResult getAdminInfo( Principal principal){
+        String username = principal.getName();
+        Admin admin = adminService.SelectByUsername(username);
+        HashMap<String, Object> data = new HashMap<>();
+        data.put("username",admin.getUsername());
+        data.put("roles",new String[]{"TEST"});
+        return CommonResult.success(data);
+    }
+
 
 }
