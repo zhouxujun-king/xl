@@ -17,13 +17,11 @@
     <update id="updatePassword" parameterType="com.zlzl.estate.model.Admin">
         UPDATE admin
         <set>
-            <if test="username !=null">
-                username=#{username,jdbcType=VARCHAR}
-            </if>
             <if test="password != null ">
                 password=#{password,jdbcType=VARCHAR}
             </if>
         </set>
+        WHERE username=#{username}
     </update>
 
 </mapper>

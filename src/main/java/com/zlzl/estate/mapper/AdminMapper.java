@@ -15,6 +15,6 @@ public interface AdminMapper {
      */
     Admin SelectByUsername(String username);
 
-    int updatePassword(@Param("record") Admin admin);
+    int updatePassword( Admin admin);
 
 }

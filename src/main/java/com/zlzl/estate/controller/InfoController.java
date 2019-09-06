@@ -30,7 +30,7 @@ public class InfoController {
         admin.setUsername(username);
         //校验原密码
         Admin adminInfo = adminService.SelectByUsername(username);
-        if(adminInfo.getPassword().equals("oldPassword")){
+        if(adminInfo.getPassword().equals(oldPassword)){
             try {
                 admin.setPassword(newPassword);
                 int count = adminService.updatePassword(admin);
