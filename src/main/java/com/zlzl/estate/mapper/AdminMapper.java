@@ -2,6 +2,7 @@ package com.zlzl.estate.mapper;
 
 import com.zlzl.estate.model.Admin;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -14,6 +15,6 @@ public interface AdminMapper {
      */
     Admin SelectByUsername(String username);
 
-    int updatePassword(Admin admin);
+    int updatePassword(@Param("record") Admin admin);
 
 }

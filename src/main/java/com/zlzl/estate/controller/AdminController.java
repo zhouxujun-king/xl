@@ -51,7 +51,7 @@ public class AdminController {
 
 
     @ApiOperation("获取登录用户信息")
-    @RequestMapping("/info")
+    @RequestMapping(value = "/info",method = RequestMethod.GET)
     @ResponseBody
     public CommonResult getAdminInfo( Principal principal){
         String username = principal.getName();

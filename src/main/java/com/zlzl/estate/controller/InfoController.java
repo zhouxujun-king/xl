@@ -16,15 +16,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/info")
 public class InfoController {
 
-    private static final Logger LOGGER= LoggerFactory.getLogger(InfoController.class);
-
     @Autowired
     private AdminService adminService;
 
     @ApiOperation("密码修改")
-    @RequestMapping(value = "/updatePassword",method = RequestMethod.GET)
+    @RequestMapping(value = "/updatePassword",method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult updatePassword(@RequestBody  String oldPassword,String newPassword){
+    public CommonResult updatePassword(@RequestBody String newPassword,String oldPassword){
         Admin admin = new Admin();
         //从登录状态中获取当前登录的用户
         //暂时写死了，登录接口调通后从登录接口获取
@@ -41,10 +39,11 @@ public class InfoController {
                 }
                 return CommonResult.failed();
             } catch (Exception e) {
-                LOGGER.error("原密码错误：{}",e.getMessage());
+//                LOGGER.error("原密码错误：{}",e.getMessage());
             }
         }
         return  CommonResult.failed();
     }
+
 
 }

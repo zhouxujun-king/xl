@@ -5,12 +5,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @Setter
 @Getter
 public class Admin implements Serializable {
 
-    private Long id;
+    private int id;
 
     private String username;
 
@@ -21,8 +22,8 @@ public class Admin implements Serializable {
     private String phone;
 
     @ApiModelProperty(value = "创建时间")
-    private String createTime;
+    private Date createTime;
 
     @ApiModelProperty(value = "最后登录时间")
-    private String loginTime;
+    private Date loginTime;
 }
