@@ -2,7 +2,7 @@ spring:
   datasource:
    url: jdbc:mysql://localhost:3306/estate?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
    username: root
-   password: root123456
+   password: luo158
 
   thymeleaf:
     prefix: classpath:/templates/
@@ -17,6 +17,13 @@ jwt:
   tokenHead: Bearer  #JWT负载中拿到开头
 mybatis:
   mapper-locations: classpath:mapper/*.xml
+
+#pagehelper分页插件配置
+pagehelper.helperDialect: mysql
+logging:
+  level:
+    root: info #日志配置DEBUG,INFO,WARN,ERROR
+    com.zlzl.estate: debug
 
 server:
   servlet:

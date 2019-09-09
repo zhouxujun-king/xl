@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
+
 @Api(tags = "InfoController",description = "密码修改")
 @RestController
 @RequestMapping("/info")
@@ -20,9 +21,9 @@ public class InfoController {
     private AdminService adminService;
 
     @ApiOperation("密码修改")
-    @RequestMapping(value = "/updatePassword",method = RequestMethod.POST)
+    @RequestMapping(value = "/updatePassword",method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult updatePassword(@RequestBody String newPassword,String oldPassword){
+    public CommonResult updatePassword(@RequestParam String oldPassword,@RequestParam String newPassword){
         Admin admin = new Admin();
         //从登录状态中获取当前登录的用户
         //暂时写死了，登录接口调通后从登录接口获取
@@ -39,7 +40,7 @@ public class InfoController {
                 }
                 return CommonResult.failed();
             } catch (Exception e) {
-//                LOGGER.error("原密码错误：{}",e.getMessage());
+//               LOGGER.error("原密码错误：{}",e.getMessage());
             }
         }
         return  CommonResult.failed();

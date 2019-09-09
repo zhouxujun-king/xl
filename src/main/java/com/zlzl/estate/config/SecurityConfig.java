@@ -90,6 +90,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return username -> {
             Admin admin = adminService.SelectByUsername(username);
             if (admin != null) {
+                //  新旧密码未进行对比
 //                List<UmsPermission> permissionList = adminService.getPermissionList(admin.getId());
                 List<AdminPermission> permissionList = new ArrayList<>();
                 return new AdminUserDetails(admin,permissionList);

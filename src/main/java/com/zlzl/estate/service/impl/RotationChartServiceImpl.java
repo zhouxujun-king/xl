@@ -1,11 +1,17 @@
 package com.zlzl.estate.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.zlzl.estate.mapper.RotationChartMapper;
 import com.zlzl.estate.model.RotationChart;
 import com.zlzl.estate.service.RotationChartService;
+import com.zlzl.estate.util.Appconst;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 @Service
@@ -15,7 +21,8 @@ public class RotationChartServiceImpl implements RotationChartService {
     private RotationChartMapper rotationChartMapper;
 
     @Override
-    public List<RotationChart> list() {
+    public List<RotationChart> list(String keyword,Integer pageNum,Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
         return rotationChartMapper.list();
     }
 
@@ -34,5 +41,18 @@ public class RotationChartServiceImpl implements RotationChartService {
         RotationChart rotationChart = new RotationChart();
         rotationChart.setId(id);
         return rotationChartMapper.update(rotationChart);
+    }
+
+    @Override
+    public void uploadFile(HttpServletRequest request, MultipartFile file) throws IOException {
+        //放到指定文件夹下
+        String fileName = Appconst.uploadFile(request,file);
+        //保存进数据库
+        RotationChart rotationChart = new RotationChart();
+        rotationChart.setName(fileName);
+        rotationChart.setOrderNo(1);//前台传过来
+        rotationChart.setPicUrl("123");//图片的路径
+        rotationChart.setState("1");
+        rotationChartMapper.add(rotationChart);
     }
 }

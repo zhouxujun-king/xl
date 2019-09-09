@@ -14,4 +14,9 @@ public class RotationChart implements Serializable {
     private Integer orderNo;
 
     private String picUrl;
+
+    private String state;
+
+    private String name;
+
 }

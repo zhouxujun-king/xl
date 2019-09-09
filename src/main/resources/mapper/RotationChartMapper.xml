@@ -5,29 +5,31 @@
         <result column="id" property="id"></result>
         <result column="orderNo" property="orderNo"></result>
         <result column="picUrl" property="picUrl" jdbcType="VARCHAR"></result>
+        <result column="name" property="name" jdbcType="VARCHAR"></result>
+        <result column="state" property="state"></result>
     </resultMap>
 
-    <!--<select id="list" resultMap="chartMap">-->
-        <!--SELECT * FROM rotationChart ORDER BY orderNo DEC-->
-    <!--</select>-->
+    <select id="list" resultMap="chartMap">
+        SELECT * FROM rotationChart ORDER BY orderNo DESC
+    </select>
 
-    <!--<insert id="add" parameterMap="chartMap" >-->
-        <!--INSERT INTO rotationChart VALUES (#{orderNo},#{picUrl})-->
-    <!--</insert>-->
+   <!-- <insert id="add" parameterMap="chartMap" >
+        INSERT INTO rotationChart VALUES (#{orderNo},#{picUrl})
+    </insert>
 
-    <!--<delete id="delete" parameterType="Integer">-->
-        <!--DELETE FROM rotationChart WHERE id=#{id,jdbcType=INTEGER}-->
-    <!--</delete>-->
+    <delete id="delete" parameterType="Integer">
+        DELETE FROM rotationChart WHERE id=#{id,jdbcType=INTEGER}
+    </delete>
 
-    <!--<update id="update" parameterType="com.zlzl.estate.model.RotationChart">-->
-        <!--UPDATE rotationChart-->
-        <!--<set>-->
-            <!--<if test="orderNo != null">-->
-                <!--orderNo=#{orderNo,jdbcType=INTEGER}-->
-            <!--</if>-->
-            <!--<if test="picUrl != null">-->
-                <!--picUrl=#{picUrl,jdbcType=VARCHAR}-->
-            <!--</if>-->
-        <!--</set>-->
-    <!--</update>-->
+    <update id="update" parameterType="com.zlzl.estate.model.RotationChart">
+        UPDATE rotationChart
+        <set>
+            <if test="orderNo != null">
+                orderNo=#{orderNo,jdbcType=INTEGER}
+            </if>
+            <if test="picUrl != null">
+                picUrl=#{picUrl,jdbcType=VARCHAR}
+            </if>
+        </set>
+    </update>-->
 </mapper>

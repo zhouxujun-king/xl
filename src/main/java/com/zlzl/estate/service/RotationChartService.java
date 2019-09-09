@@ -1,7 +1,10 @@
 package com.zlzl.estate.service;
 
 import com.zlzl.estate.model.RotationChart;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.List;
 
 public interface RotationChartService {
@@ -9,7 +12,7 @@ public interface RotationChartService {
     /**
      * 轮播图列表
      */
-    List<RotationChart> list();
+    List<RotationChart> list(String keyword,Integer pageNum,Integer pageSize);
 
     /**
      * 添加轮播图
@@ -25,4 +28,11 @@ public interface RotationChartService {
      * 编辑
      */
     int update(Integer id);
+
+    /**
+     * 上传文件
+     * @param request
+     * @param file
+     */
+    void uploadFile(HttpServletRequest request, MultipartFile file) throws IOException;
 }
