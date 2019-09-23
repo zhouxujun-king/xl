@@ -18,6 +18,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @Api(tags = "RotationChartController",description = "轮播图后台管理")
@@ -72,17 +73,17 @@ public class RotationChartController {
         return CommonResult.failed();
     }
 
-    @ApiOperation("编辑图片")
+    @ApiOperation("上传图片")
     @RequestMapping(value = "/uploadPic",method = RequestMethod.POST)
     @ResponseBody
     public CommonResult uploadPic(HttpServletRequest request, @RequestParam("file") MultipartFile file){
         try {
-            rotationChartService.uploadFile(request, file);
+            String fileName = rotationChartService.uploadFile(request, file);
+            return CommonResult.success(fileName,"success");
         } catch (IOException e) {
             e.printStackTrace();
             return CommonResult.failed();
         }
-        return CommonResult.success("success");
     }
 
 }

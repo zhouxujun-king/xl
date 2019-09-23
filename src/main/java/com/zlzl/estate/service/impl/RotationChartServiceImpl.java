@@ -11,8 +11,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class RotationChartServiceImpl implements RotationChartService {
@@ -44,15 +44,20 @@ public class RotationChartServiceImpl implements RotationChartService {
     }
 
     @Override
-    public void uploadFile(HttpServletRequest request, MultipartFile file) throws IOException {
+    public String uploadFile(HttpServletRequest request, MultipartFile file) throws IOException {
         //放到指定文件夹下
         String fileName = Appconst.uploadFile(request,file);
+        /*String orderno = (String) params.get("orderno");
+        //将库中orderno相同的置为无效
+        rotationChartMapper.updateState(Integer.valueOf(orderno));
         //保存进数据库
         RotationChart rotationChart = new RotationChart();
         rotationChart.setName(fileName);
-        rotationChart.setOrderNo(1);//前台传过来
-        rotationChart.setPicUrl("123");//图片的路径
-        rotationChart.setState("1");
-        rotationChartMapper.add(rotationChart);
+        rotationChart.setOriname(file.getOriginalFilename());
+        rotationChart.setOrderNo(Integer.valueOf(orderno));     //前台传过来
+        rotationChart.setPicUrl(Appconst.uploadPath + fileName);//图片的路径
+        rotationChart.setState("1");                            //默认有效
+        rotationChartMapper.add(rotationChart);*/
+        return fileName;
     }
 }

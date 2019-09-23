@@ -19,4 +19,6 @@ public class RotationChart implements Serializable {
 
     private String name;
 
+    private String oriname;
+
 }

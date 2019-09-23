@@ -6,6 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 public interface RotationChartService {
 
@@ -33,6 +34,7 @@ public interface RotationChartService {
      * 上传文件
      * @param request
      * @param file
+     * @param params
      */
-    void uploadFile(HttpServletRequest request, MultipartFile file) throws IOException;
+    String uploadFile(HttpServletRequest request, MultipartFile file) throws IOException;
 }

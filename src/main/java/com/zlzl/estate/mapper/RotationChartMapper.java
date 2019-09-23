@@ -5,6 +5,7 @@ import com.zlzl.estate.util.CommonPage;
 import io.swagger.models.auth.In;
 
 import java.util.List;
+import java.util.Map;
 
 public interface RotationChartMapper {
 
@@ -15,4 +16,6 @@ public interface RotationChartMapper {
     int delete(Integer id);
 
     int update(RotationChart rotationChart);
+
+    void updateState(Integer orderno);
 }

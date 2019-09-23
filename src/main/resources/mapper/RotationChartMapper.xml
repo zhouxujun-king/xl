@@ -6,6 +6,7 @@
         <result column="orderNo" property="orderNo"></result>
         <result column="picUrl" property="picUrl" jdbcType="VARCHAR"></result>
         <result column="name" property="name" jdbcType="VARCHAR"></result>
+        <result column="oriname" property="oriname" jdbcType="VARCHAR"></result>
         <result column="state" property="state"></result>
     </resultMap>
 
@@ -13,11 +14,17 @@
         SELECT * FROM rotationChart ORDER BY orderNo DESC
     </select>
 
-   <!-- <insert id="add" parameterMap="chartMap" >
-        INSERT INTO rotationChart VALUES (#{orderNo},#{picUrl})
+   <insert id="add" useGeneratedKeys="true" keyProperty="id" parameterType="com.zlzl.estate.model.RotationChart">
+        INSERT INTO rotationChart(orderNo,picUrl,name,state,oriname) VALUES (#{orderNo},#{picUrl},#{name},#{state},#{oriname})
     </insert>
 
-    <delete id="delete" parameterType="Integer">
+    <update id="updateState" parameterType="Integer">
+        UPDATE rotationChart
+            set state = 0
+        where orderNo = #{orderno}
+    </update>
+
+    <!-- <delete id="delete" parameterType="Integer">
         DELETE FROM rotationChart WHERE id=#{id,jdbcType=INTEGER}
     </delete>
 

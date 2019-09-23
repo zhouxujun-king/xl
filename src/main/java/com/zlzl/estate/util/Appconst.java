@@ -11,6 +11,7 @@ import java.util.UUID;
  * 常量类
  */
 public class Appconst {
+    public static  String uploadPath = "http://localhost:8082/upload/imgs/";
 
     /**
      * 获取32位uuid
@@ -22,14 +23,16 @@ public class Appconst {
     }
 
     /**
-     * 上传文件
+     * 上传图片
      * @param request
      * @param file
      * @return
      * @throws IOException
      */
     public static String uploadFile(HttpServletRequest request, MultipartFile file) throws IOException {
-        String uploadPath = request.getSession().getServletContext().getRealPath("/upload");
+       /*String uploadPath = request.getSession().getServletContext().getRealPath("/");*/
+        String c = System.getProperty("user.dir");
+        String uploadPath = c + "\\src\\main\\resources\\static\\upload\\imgs\\";
         return mkFile(uploadPath, file);
     }
 
@@ -39,7 +42,7 @@ public class Appconst {
             dir.mkdir();
         }
         String OriginalFileName = file.getOriginalFilename();
-        String fileSuffix = OriginalFileName.substring(OriginalFileName.lastIndexOf("."), OriginalFileName.length() - 1);
+        String fileSuffix = OriginalFileName.substring(OriginalFileName.lastIndexOf("."), OriginalFileName.length());
         String fileName = uuid() + fileSuffix;
         File newFile = new File(filePath + fileName);
         file.transferTo(newFile);
